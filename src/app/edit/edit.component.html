@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{this.data.editUser.firstName}}</h4>
+  <button type="button" class="close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <label for="firstName">Vorname:</label>
+    <input type="text" class="form-control" [(ngModel)]="firstname" id="firstName" (keyup.enter)="save()">
+  </div>
+  <div class="form-group">
+    <label for="secondName">Nachname:</label>
+    <input type="text" class="form-control" [(ngModel)]="secondname" id="secondName" (keyup.enter)="save()">
+  </div>
+
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Schließen</button>
+  <button type="submit" class="btn btn-success" (click)="save()">Speichern</button>
+</div>
+

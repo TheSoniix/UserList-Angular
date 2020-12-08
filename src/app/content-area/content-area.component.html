@@ -1,0 +1,13 @@
+<app-nav-bar></app-nav-bar>
+
+
+<div *ngFor="let alert of data.alert" class="d-flex justify-content-center w-100 mt-1">
+  <app-alerts  [message]="data.alert[0]"></app-alerts>
+</div>
+
+<div *ngIf="data.loggedIn" class="d-flex flex-column m-5">
+  <div class="h1">Usermanager</div>
+  <router-outlet></router-outlet>
+</div>
+
+

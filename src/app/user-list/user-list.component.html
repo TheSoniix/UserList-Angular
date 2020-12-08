@@ -1,0 +1,28 @@
+<table class="table table-responsive-sd">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Vorname</th>
+    <th scope="col">Nachname</th>
+    <th scope="col">Datum</th>
+    <th scope="col">Beschreibung</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of data.userlist; let i = index">
+    <th scope="row">{{i}}</th>
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.creationTime | date: 'dd, MMMM, yyyy'}}</td>
+    <td>{{user.description}}</td>
+    <td>
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-secondary mr-1" (click)="this.event.openModal(user)">Edit</button>
+        <button class="btn btn-danger" (click)="this.event.delete(user)">Delete</button>
+      </div>
+       </td>
+  </tr>
+  </tbody>
+</table>
+

@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <span class="navbar-brand">Usermanager</span>
+
+  <div class="collapse navbar-collapse" id="navbar-supported-content">
+
+    <!-- Login Form -->
+    <form *ngIf="!data.loggedIn" class="form-inline my-2 my-lg-0" id="login-form">
+      <div class="input-group">
+        <input type="text" placeholder="Username" class="form-control" id="login-username"
+               [(ngModel)]="username" name="username">
+        <input type="password" placeholder="Password" class="form-control" id="login-password"
+               [(ngModel)]="password" name="password">
+        <div class="input-group-append">
+          <button class="btn btn-outline-info" type="submit"
+                  (click)="loginData()">Login
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Logout-Form -->
+    <div *ngIf="data.loggedIn" id="logout-form">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link"  [routerLink]="'/loggedin/user/' + data.loggedUser.id">Userliste</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  [routerLink]="'/loggedin/user/' + data.loggedUser.id + '/add'">Add-Formular</a>
+        </li>
+        <li class="nav-item">
+          <span class="navbar-text pr-3">Hallo {{data.loggedUser.firstName}}!</span>
+          <button class="btn btn-outline-info" type="button" id="logout-button"
+                  (click)="auth.logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+

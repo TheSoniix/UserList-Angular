@@ -1,0 +1,26 @@
+<form action="#">
+  <div class="h3">Nutzer hinzufügen</div>
+  <div class="form-group col-md-6">
+    <label for="firstname">Vorname</label>
+    <input [(ngModel)]="firstname" name="firstname" type="text" class="form-control" id="firstname">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="secondname">Nachname</label>
+    <input [(ngModel)]="secondname" name="secondname" type="text" class="form-control" id="secondname">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="username">Username</label>
+    <input [(ngModel)]="username" name="username" type="text" class="form-control" id="username">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="password">Passwort</label>
+    <input [(ngModel)]="password" name="password" type="password" class="form-control" id="password">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="description">Beschreibung</label>
+    <input [(ngModel)]="description" name="description" type="text" class="form-control" id="description">
+  </div>
+  <div class="form-group col-md-6">
+    <button type="submit" (click)="add()" class="btn btn-success">Hinzufügen</button>
+  </div>
+</form>
