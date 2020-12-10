@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {EventHandlersService} from '../event-handlers.service';
 import {DataService} from '../data.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
@@ -31,6 +31,4 @@ export class UserListComponent implements OnInit {
     } catch (e) {
     }
   }
-
-
 }

@@ -6,6 +6,7 @@ import {DataService} from './data.service';
 import {User} from '../../../server/model/user';
 import {Location} from '@angular/common';
 import {ConfirmDeletingComponent} from './confirm-deleting/confirm-deleting.component';
+import {SocketService} from "./socket.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import {ConfirmDeletingComponent} from './confirm-deleting/confirm-deleting.comp
 export class EventHandlersService {
 
   constructor(private http: HttpClient, private modalService: NgbModal, private data: DataService,
-              private location: Location) {
+              private location: Location, private socket: SocketService) {
   }
 
   public addUser(
@@ -33,6 +34,7 @@ export class EventHandlersService {
       this.data.alert.push('User erfolgreich erstellt');
       setTimeout(() => this.data.alert.splice(0,1), 5000);
       this.updateUserList();
+      this.socket.emit('update', {});
     }).catch((err) => {
       console.log(err);
     });
@@ -49,6 +51,7 @@ export class EventHandlersService {
         setTimeout(() => this.data.alert.splice(0,1), 5000);
         this.http.delete('http://localhost:8080/user/' + user.id).toPromise().then(() => {
           this.updateUserList();
+          this.socket.emit('update', {});
         });
       }
     } catch (e) {
@@ -66,6 +69,7 @@ export class EventHandlersService {
       const fullname = await modal.result;
       this.editUser(fullname[0], fullname[1], user.id);
       this.updateUserList();
+      this.socket.emit('update', {});
       this.location.replaceState('/loggedin/user/' + this.data.loggedUser.id);
     } catch (e) {
       this.location.replaceState('/loggedin/user/' + this.data.loggedUser.id);

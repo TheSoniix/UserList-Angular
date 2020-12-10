@@ -16,7 +16,8 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.auth.checkLogin();
-    this.socket.listen('testUserlist');
+    this.socket.listen('socket');
+
   }
 
 

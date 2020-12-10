@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {User} from '../../../server/model/user';
+import {EventHandlersService} from "./event-handlers.service";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +26,11 @@ export class DataService {
   // helping variable which saves the user who is to be deleted
   public deleteUser: User;
 
-  constructor() {
+  constructor(private http: HttpClient) {
+  }
+
+  updatelist(): void {
+
   }
 }
 

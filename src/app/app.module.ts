@@ -12,6 +12,7 @@ import {EditComponent} from './edit/edit.component';
 import {Routes, RouterModule} from '@angular/router';
 import { ConfirmDeletingComponent } from './confirm-deleting/confirm-deleting.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const appRoutes: Routes = [
   {path: '', component: ContentAreaComponent},
@@ -19,6 +20,8 @@ const appRoutes: Routes = [
   {path: 'loggedin/user/:id/add', component: AddFormularComponent},
   {path: 'loggedin/user/:id/modal/:editID' , component: UserListComponent}
 ];
+
+const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ const appRoutes: Routes = [
     NgbModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    SocketIoModule.forRoot(config)
   ],
   providers: [],
   bootstrap: [AppComponent]

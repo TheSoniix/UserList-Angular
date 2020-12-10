@@ -1,21 +1,25 @@
-import {Injectable} from '@angular/core';
-import {io} from 'socket.io-client';
+import {Injectable, ViewChild} from '@angular/core';
+import {Socket} from "ngx-socket-io";
+import {DataService} from "./data.service";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
 
-  socket;
-
-  constructor() {
-    this.socket = io('http://localhost:8080')
-  }
+  constructor(private socket: Socket, private data: DataService, private http: HttpClient) {}
 
  listen(event: string) {
-    console.log('listen')
    this.socket.on(event, (data) => {
-     console.log(event, data);
+     console.log('Event: ', event, ' Data: ', data);
+     if (data === true) {
+       this.http.get('http://localhost:8080/users').toPromise().then((res: any) => {
+         this.data.userlist = res.userList;
+       }).catch((err) => {
+         console.log(err);
+       });
+     }
    })
   }
 
