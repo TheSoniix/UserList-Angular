@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {DataService} from '../data.service';
 
@@ -9,6 +9,9 @@ import {DataService} from '../data.service';
 })
 export class EditComponent implements OnInit {
 
+  @Input() user;
+  public fname;
+
   public firstname = '';
   public secondname = '';
   public fullname;
@@ -17,6 +20,7 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fname = this.user.firstName;
   }
 
   save(): void {

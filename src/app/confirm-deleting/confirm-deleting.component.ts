@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {DataService} from '../data.service';
 
@@ -8,10 +8,12 @@ import {DataService} from '../data.service';
   styleUrls: ['./confirm-deleting.component.css']
 })
 export class ConfirmDeletingComponent implements OnInit {
-
+  @Input() user;
+  public fname;
   constructor(public modal: NgbActiveModal, public data: DataService) { }
 
   ngOnInit(): void {
+    this.fname = this.user.firstName;
   }
 
 }

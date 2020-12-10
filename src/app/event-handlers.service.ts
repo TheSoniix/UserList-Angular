@@ -6,7 +6,6 @@ import {DataService} from './data.service';
 import {User} from '../../../server/model/user';
 import {Location} from '@angular/common';
 import {ConfirmDeletingComponent} from './confirm-deleting/confirm-deleting.component';
-import {SocketService} from "./socket.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ import {SocketService} from "./socket.service";
 export class EventHandlersService {
 
   constructor(private http: HttpClient, private modalService: NgbModal, private data: DataService,
-              private location: Location, private socket: SocketService) {
+              private location: Location) {
   }
 
   public addUser(
@@ -41,6 +40,7 @@ export class EventHandlersService {
 
   public async delete(user: User): Promise<void> {
     const deleteModal = this.modalService.open(ConfirmDeletingComponent);
+    deleteModal.componentInstance.user = user;
     this.data.deleteUser = user;
     try {
       const wantDelete: boolean = await deleteModal.result;
@@ -60,6 +60,7 @@ export class EventHandlersService {
   public async openModal(user: User): Promise<void> {
     this.location.go('/loggedin/user/' + this.data.loggedUser.id + '/modal/' + user.id);
     const modal = this.modalService.open(EditComponent);
+    modal.componentInstance.user = user;
     try {
       this.data.editUser = user;
       const fullname = await modal.result;
@@ -84,7 +85,6 @@ export class EventHandlersService {
   public updateUserList(): void {
     this.http.get('http://localhost:8080/users').toPromise().then((res: any) => {
       this.data.userlist = res.userList;
-      // this.socket.socket.emit('test');
     }).catch((err) => {
       console.log(err);
     });

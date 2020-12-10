@@ -41,7 +41,6 @@ export class AuthService {
 
   // Check if user is alredy logged in
   public checkLogin(): void {
-
     this.http.get('http://localhost:8080/login').toPromise()
       .then((res: any) => {
         this.data.loggedIn = true;
