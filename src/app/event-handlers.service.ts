@@ -69,8 +69,8 @@ export class EventHandlersService {
       const fullname = await modal.result;
       this.editUser(fullname[0], fullname[1], user.id);
       this.updateUserList();
-      this.socket.emit('update', {});
       this.location.replaceState('/loggedin/user/' + this.data.loggedUser.id);
+      this.socket.emit('update', {});
     } catch (e) {
       this.location.replaceState('/loggedin/user/' + this.data.loggedUser.id);
     }
